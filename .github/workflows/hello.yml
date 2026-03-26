@@ -5,7 +5,7 @@ on:
 
 jobs:
   greet:
-    runs-on: ubuntu-ubuntu-latest
+    runs-on: ubuntu-latest
     steps:
       - name: Say hello
         run: echo "Hello from Github Actions!"
