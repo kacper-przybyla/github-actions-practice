@@ -1,0 +1,28 @@
+name: Environment variables
+
+on:
+  workflow_dispatch:
+
+env:
+  APP_NAME: my-practice-app
+
+jobs:
+  demonstrate:
+    runs-on: ubuntu-latest
+    env:
+      ENVIRONMENT: development
+    steps:
+      - name: Read both variables
+        run: echo "APP_NAME = $APP_NAME, ENVIRONMENT = $ENVIRONMENT"
+
+      - name: Add step-level env var
+        env:
+          DEPLOY_TARGET: localhost
+        run: "Deploying $APP_NAME to $DEPLOY_TARGET"
+
+      - name: Make fake image tag
+        env:
+          GITHUB_SHA: "${{github.sha}}"
+        run: |
+          SHORT_SHA=${GITHUB_SHA::7}
+          echo "$APP_NAME:$SHORT_SHA"
