@@ -1,0 +1,24 @@
+name: Greetings
+
+on: 
+  workflow_dispatch:
+
+jobs:
+  greet:
+    runs-on: ubuntu-ubuntu-latest
+    steps:
+      - name: Say hello
+        run: echo "Hello from Github Actions!"
+      
+      - name: Print actor
+        run: echo "${{ github.actor }} triggered this workflow"
+
+      - name: Print todays date
+        run: date
+
+      - name: Multi line run
+        run: |
+          echo "Hello from GitHub Actions!"
+          echo "${{ github.actor }} triggered this workflow"
+          date
+
