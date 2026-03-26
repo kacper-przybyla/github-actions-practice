@@ -20,5 +20,5 @@ jobs:
         run: docker images
 
       - name: Verify builded conatiner
-        run: docker run -rm practice-app:latest echo "container works"
+        run: docker run --rm practice-app:latest echo "container works"
 
