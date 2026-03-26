@@ -13,7 +13,7 @@ jobs:
       - name: Print actor
         run: echo "${{ github.actor }} triggered this workflow"
 
-      - name: Print todays date
+      - name: Print today's date
         run: date
 
       - name: Multi line run
