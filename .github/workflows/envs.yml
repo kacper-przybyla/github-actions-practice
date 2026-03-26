@@ -18,7 +18,7 @@ jobs:
       - name: Add step-level env var
         env:
           DEPLOY_TARGET: localhost
-        run: "Deploying $APP_NAME to $DEPLOY_TARGET"
+        run: echo "Deploying $APP_NAME to $DEPLOY_TARGET"
 
       - name: Make fake image tag
         env:
