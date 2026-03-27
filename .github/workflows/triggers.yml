@@ -1,0 +1,38 @@
+name: Triggers example
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - app.py
+      - Dockerfile
+  pull_request:
+    branches: [main]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  packages: write
+
+jobs:
+  pipeline-info:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Print what triggered workflow
+        run: echo "Workflow triggered by ${{ github.event_name }}"
+
+      - name: Print the branch or ref
+        run: echo "Branch or ref that workflow is executed on - ${{ github.ref }}"
+
+      - name: Print the actor
+        run: Echo "ACtor - ${{ github.actor }}"
+
+      - name: Print different messages depending on the event
+        run: |
+          if [ "${{ github.event_name }}" == "push" ]; then
+            echo "This is a push to main - would build and push image"
+          elif [ "${{ github.event_name }}" == "pull_request" ]; then
+            echo "This is a PR - wil run test and build the image"
+          else
+            echo "This is a manual trigger"
+          fi
