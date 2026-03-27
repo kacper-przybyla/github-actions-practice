@@ -25,7 +25,7 @@ jobs:
         run: echo "Branch or ref that workflow is executed on - ${{ github.ref }}"
 
       - name: Print the actor
-        run: Echo "ACtor - ${{ github.actor }}"
+        run: echo "Actor - ${{ github.actor }}"
 
       - name: Print different messages depending on the event
         run: |
