@@ -36,7 +36,7 @@ jobs:
         run: docker images
 
       - name: Verify built container
-        run: docker run --rm ${IMAGE_NAME}practice-app:latest echo "container works"
+        run: docker run --rm ${IMAGE_NAME}/practice-app:latest echo "container works"
 
       - name: Push images
         run: |
