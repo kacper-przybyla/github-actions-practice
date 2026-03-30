@@ -16,9 +16,12 @@ concurrency:
   group: ${{ github.workflow }}-${{ github.ref }}
   cancel-in-progress: true
 
+
 jobs:
   test:
     runs-on: ubuntu-latest
+    permissions:
+      contents: read
     steps:
       - name: Check the repository
         uses: actions/checkout@v6
@@ -34,6 +37,9 @@ jobs:
     needs: test
     env:
       IMAGE_BASE_NAME: ghcr.io/${{ github.repository_owner }}
+    permissions:
+      contents: read
+      packages: write
     steps:
       - name: Check the repository
         uses: actions/checkout@v6
