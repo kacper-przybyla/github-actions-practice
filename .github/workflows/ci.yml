@@ -49,7 +49,7 @@ jobs:
           password: ${{ secrets.GITHUB_TOKEN }}
 
       - name: Build images
-        run: build -t $IMAGE_BASE_NAME/practice-app:latest -t $IMAGE_BASE_NAME/practice-app:${GITHUB_SHA::7} .
+        run: docker build -t $IMAGE_BASE_NAME/practice-app:latest -t $IMAGE_BASE_NAME/practice-app:${GITHUB_SHA::7} .
 
       - name: Smoke tests
         run: |
