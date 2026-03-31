@@ -4,7 +4,7 @@ on:
   workflow_dispatch:
     inputs:
       environment:
-        description: "Target environment"
+        description: 'Target environment'
         required: true
         type: choice
         options:
@@ -12,16 +12,16 @@ on:
           - staging
           - production
       image_tag:
-        description: "Image tag to deploy"
+        description: 'Image tag to deploy'
         required: true
         type: string
         default: 'latest'
       dry_run:
-        description: "Dry run mode - print without executing"
+        description: 'Dry run mode - print without executing'
         default: true
         type: boolean
       debug:
-        description: "Print debug information"
+        description: 'Print debug information'
         default: false
         type: boolean
 
@@ -34,7 +34,6 @@ jobs:
     runs-on: ubuntu-latest
     permissions:
       contents: read
-      packages: write
     steps:
       - name: Print a deployment plan
         run: |
@@ -56,27 +55,27 @@ jobs:
 
       - name: Deploy to development environment
         if: inputs.environment == 'development' && inputs.dry_run == false
-        run: echo "Deploying $image_tag to development..."
+        run: echo "Deploying ${{ inputs.image_tag }} to development..."
 
       - name: Deploy to staging environment
         if: inputs.environment == 'staging' && inputs.dry_run == false
-        run: echo "Deploying $image_tag to staging..."
+        run: echo "Deploying ${{ inputs.image_tag }} to staging..."
 
       - name: Deploy to production environment
         if: inputs.environment == 'production' && inputs.dry_run == false
-        run: echo "Deploying $image_tag to production..."
+        run: echo "Deploying ${{ inputs.image_tag }} to production..."
 
-      - name: Deploy to development environment
+      - name: Deploy to development environment with dry run
         if: inputs.environment == 'development' && inputs.dry_run == true
-        run: echo "[DRY RUN] Would deploy $image_tag to development..."
+        run: echo "[DRY RUN] Would deploy ${{ inputs.image_tag }} to development..."
 
-      - name: Deploy to staging environment
+      - name: Deploy to staging environment with dry run
         if: inputs.environment == 'staging' && inputs.dry_run == true
-        run: echo "[DRY RUN] Would deploy $image_tag to staging..."
+        run: echo "[DRY RUN] Would deploy ${{ inputs.image_tag }} to staging..."
 
-      - name: Deploy to production environment
+      - name: Deploy to production environment with dry run
         if: inputs.environment == 'production' && inputs.dry_run == true
-        run: echo "[DRY RUN] Would deploy $image_tag to production..."
+        run: echo "[DRY RUN] Would deploy ${{ inputs.image_tag }} to production..."
       
       - name: Summary
         if: always()
